@@ -1,0 +1,1964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aniruddha S Kulkarni - Software Developer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1e40af;
+      --secondary: #64748b;
+      --accent: #f59e0b;
+      --bg-dark: #0f172a;
+      --bg-light: #f8fafc;
+      --text-dark: #1e293b;
+      --text-light: #64748b;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--text-dark);
+      line-height: 1.6;
+      background: var(--bg-light);
+    }
+    
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(19, 19, 18, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+      z-index: 1000;
+      transition: all 0.3s ease;
+      border-bottom:#211e1a 2px solid;
+      
+    }
+    
+    nav.scrolled {
+      box-shadow: 0 2px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .logo:hover {
+      transform: scale(1.1);
+      color: var(--accent);
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+    
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--primary);
+    }
+    
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+    
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: var(--primary);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+      opacity: 0.3;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+    }
+    
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      animation: fadeInUp 0.8s ease;
+    }
+    
+    .hero .subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      opacity: 0.95;
+      animation: fadeInUp 0.8s ease 0.2s backwards;
+    }
+    
+    .hero .tagline {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+      animation: fadeInUp 0.8s ease 0.4s backwards;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.8s ease 0.6s backwards;
+    }
+    
+    .btn {
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+    
+    .btn-primary {
+      background: white;
+      color: var(--primary);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+    
+    .btn-secondary:hover {
+      background: white;
+      color: var(--primary);
+    }
+    
+    /* Section Styles */
+    section {
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: var(--text-dark);
+      position: relative;
+      padding-bottom: 1rem;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 2px;
+    }
+    
+    /* About Section */
+    #about {
+      background: white;
+    }
+    
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    
+    .profile-card {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      padding: 2rem;
+      border-radius: 20px;
+      color: white;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(37, 99, 235, 0.2);
+      transition: all 0.5s ease;
+    }
+    
+    .profile-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 60px rgba(37, 99, 235, 0.4);
+      background: linear-gradient(135deg, var(--primary-dark), var(--accent));
+    }
+    
+    .profile-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: white;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      color: var(--primary);
+      font-weight: 700;
+      overflow: hidden;
+      border: 4px solid white;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+      transition: all 0.5s ease;
+    }
+    
+    .profile-card:hover .profile-img {
+      transform: scale(1.15) rotate(5deg);
+      box-shadow: 0 10px 40px rgba(255, 255, 255, 0.4);
+      border-color: var(--accent);
+    }
+    
+    .contact-info {
+      margin-top: 1.5rem;
+      text-align: left;
+    }
+    
+    .contact-info p {
+      margin: 0.7rem 0;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+    }
+    
+    .profile-card:hover .contact-info p {
+      transform: translateX(5px);
+    }
+    
+    .about-text h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+      transition: all 0.3s ease;
+    }
+    
+    .about-text:hover h3 {
+      color: var(--accent);
+      transform: translateX(10px);
+    }
+    
+    .about-text p {
+      color: var(--text-light);
+      margin-bottom: 1rem;
+      line-height: 1.8;
+      transition: all 0.3s ease;
+    }
+    
+    .about-text p:hover {
+      color: var(--text-dark);
+      transform: translateX(5px);
+    }
+    
+    /* Experience Section */
+    #experience {
+      background: var(--bg-light);
+    }
+    
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+    
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, var(--primary), var(--accent));
+    }
+    
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+      padding-left: 2rem;
+      cursor: pointer;
+    }
+    
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.5rem;
+      top: 0;
+      width: 15px;
+      height: 15px;
+      background: var(--primary);
+      border: 3px solid white;
+      border-radius: 50%;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+      transition: all 0.4s ease;
+    }
+    
+    .timeline-item:hover::before {
+      background: var(--accent);
+      transform: scale(1.5);
+      box-shadow: 0 0 0 6px rgba(245, 158, 11, 0.3);
+    }
+    
+    .timeline-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      transition: all 0.4s ease;
+      border: 2px solid transparent;
+    }
+    
+    .timeline-content:hover {
+      transform: translateX(8px) translateY(-5px);
+      box-shadow: 0 15px 40px rgba(37, 99, 235, 0.15);
+      border-color: var(--primary);
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(245, 158, 11, 0.05));
+    }
+    
+    .timeline-content h3 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      transition: all 0.3s ease;
+    }
+    
+    .timeline-content:hover h3 {
+      color: var(--accent);
+      transform: translateX(5px);
+    }
+    
+    .company {
+      color: var(--text-light);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    
+    .timeline-content ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    
+    .timeline-content li {
+      padding-left: 1.5rem;
+      position: relative;
+      margin-bottom: 0.7rem;
+      color: var(--text-light);
+      transition: all 0.3s ease;
+    }
+    
+    .timeline-content li:hover {
+      color: var(--text-dark);
+      transform: translateX(8px);
+    }
+    
+    .timeline-content li::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    
+    .timeline-content li:hover::before {
+      transform: scale(1.3);
+      color: var(--primary);
+    }
+
+    .read-more {
+      display: inline-block;
+      margin-top: 1rem;
+      color: var(--primary);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .read-more:hover {
+      color: var(--accent);
+      transform: translateX(5px);
+    }
+
+    .additional-content {
+      display: none;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--bg-light);
+    }
+
+    .additional-content.show {
+      display: block;
+      animation: fadeInUp 0.5s ease;
+    }
+    
+    /* Projects Section */
+    #projects {
+      background: white;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: var(--bg-light);
+      padding: 2rem;
+      border-radius: 15px;
+      transition: all 0.4s ease;
+      border: 2px solid transparent;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(245, 158, 11, 0.1));
+      transition: left 0.4s ease;
+      z-index: 0;
+    }
+
+    .project-card:hover::before {
+      left: 0;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      background: white;
+      border-color: var(--primary);
+      box-shadow: 0 15px 40px rgba(37, 99, 235, 0.15);
+    }
+
+    .project-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .project-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: block;
+      transition: all 0.4s ease;
+    }
+
+    .project-card:hover .project-icon {
+      transform: scale(1.2) rotate(10deg);
+    }
+
+    .project-card h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .project-card:hover h3 {
+      color: var(--accent);
+      transform: translateX(5px);
+    }
+
+    .project-card p {
+      color: var(--text-light);
+      margin-bottom: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .project-card:hover p {
+      color: var(--text-dark);
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .tech-tag {
+      background: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 15px;
+      font-size: 0.85rem;
+      color: var(--text-dark);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .tech-tag:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    /* Skills Section */
+    #skills {
+      background: var(--bg-light);
+    }
+    
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    
+    .skill-category {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      transition: all 0.4s ease;
+      border: 2px solid transparent;
+    }
+    
+    .skill-category:hover {
+      transform: translateY(-8px) scale(1.02);
+      border-color: var(--primary);
+      box-shadow: 0 15px 40px rgba(37, 99, 235, 0.15);
+    }
+    
+    .skill-category h3 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+    }
+    
+    .skill-category:hover h3 {
+      color: var(--accent);
+      transform: translateX(5px);
+    }
+    
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+    
+    .skill-tag {
+      background: var(--bg-light);
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      color: var(--text-dark);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .skill-tag:hover {
+      background: var(--primary);
+      color: white;
+      transform: scale(1.08) translateY(-3px);
+      box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+    }
+    
+    /* Education & Certifications */
+    #achievements {
+      background: white;
+    }
+    
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+    
+    .education-card {
+      background: var(--bg-light);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      border-left: 4px solid var(--primary);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .education-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(245, 158, 11, 0.1));
+      transition: left 0.4s ease;
+      z-index: 0;
+    }
+    
+    .education-card:hover::before {
+      left: 0;
+    }
+    
+    .education-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 15px 40px rgba(37, 99, 235, 0.2);
+      border-left-color: var(--accent);
+      background: white;
+    }
+    
+    .education-card > * {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .education-card h3 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      transition: all 0.3s ease;
+    }
+    
+    .education-card:hover h3 {
+      color: var(--accent);
+      transform: translateX(5px);
+    }
+    
+    .education-card p {
+      color: var(--text-light);
+      margin-bottom: 0.5rem;
+      transition: all 0.3s ease;
+    }
+    
+    .education-card:hover p {
+      color: var(--text-dark);
+    }
+    
+    /* Certifications Grid */
+    .certifications-section {
+      margin-top: 3rem;
+    }
+    
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .cert-card {
+      padding: 1.8rem;
+      background: var(--bg-light);
+      border-radius: 15px;
+      color: var(--text-dark);
+      position: relative;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s ease;
+      border-left: 4px solid var(--primary);
+      overflow: hidden;
+    }
+    
+    .cert-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(245, 158, 11, 0.08));
+      transition: left 0.4s ease;
+      z-index: 0;
+    }
+    
+    .cert-card:hover::before {
+      left: 0;
+    }
+    
+    .cert-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 15px 40px rgba(37, 99, 235, 0.25);
+      border-left-color: var(--accent);
+      background: white;
+    }
+    
+    .cert-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+      transition: all 0.4s ease;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .cert-card:hover .cert-icon {
+      transform: scale(1.3) rotate(15deg);
+    }
+    
+    .cert-card h4 {
+      color: var(--primary);
+      margin-bottom: 0.8rem;
+      font-size: 1.1rem;
+      position: relative;
+      z-index: 1;
+      transition: all 0.3s ease;
+    }
+    
+    .cert-card:hover h4 {
+      color: var(--accent);
+      transform: translateX(5px);
+    }
+    
+    .cert-card p {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+      transition: all 0.3s ease;
+    }
+    
+    .cert-card:hover p {
+      color: var(--text-dark);
+    }
+
+    /* Achievements Section */
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .achievement-card {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      padding: 2rem;
+      border-radius: 15px;
+      color: white;
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .achievement-card::before {
+      content: '🏆';
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      font-size: 8rem;
+      opacity: 0.1;
+      transition: all 0.4s ease;
+    }
+
+    .achievement-card:hover::before {
+      transform: rotate(15deg) scale(1.2);
+      opacity: 0.2;
+    }
+
+    .achievement-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(37, 99, 235, 0.4);
+      background: linear-gradient(135deg, var(--primary-dark), var(--accent));
+    }
+
+    .achievement-card h3 {
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    .achievement-card p {
+      opacity: 0.95;
+      line-height: 1.8;
+    }
+
+    .achievement-card a {
+      color: white;
+      text-decoration: underline;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .achievement-card a:hover {
+      color: var(--accent);
+    }
+    
+    /* Contact Section */
+    #contact {
+      background: var(--bg-light);
+    }
+    
+    .contact-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .contact-content > p {
+      color: var(--text-light);
+      font-size: 1.1rem;
+      margin-bottom: 3rem;
+    }
+    
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .contact-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      padding: 2.5rem 2rem;
+      background: white;
+      border-radius: 15px;
+      transition: all 0.4s ease;
+      border: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .contact-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      transition: left 0.4s ease;
+      z-index: 0;
+    }
+    
+    .contact-card:hover::before {
+      left: 0;
+    }
+    
+    .contact-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(37, 99, 235, 0.3);
+      border-color: var(--accent);
+    }
+    
+    .contact-card > * {
+      position: relative;
+      z-index: 1;
+      transition: all 0.4s ease;
+    }
+    
+    .contact-card:hover > * {
+      color: white;
+    }
+    
+    .contact-icon {
+      font-size: 3rem;
+      transition: all 0.4s ease;
+    }
+    
+    .contact-card:hover .contact-icon {
+      transform: scale(1.2) rotate(10deg);
+    }
+    
+    .contact-label {
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--primary);
+    }
+    
+    .contact-details {
+      font-size: 1.05rem;
+      color: var(--text-dark);
+      font-weight: 500;
+      word-break: break-word;
+    }
+
+    .contact-details a {
+      color: inherit;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .contact-card:hover .contact-details a {
+      color: white;
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--bg-dark);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+    }
+    
+    footer p {
+      opacity: 0.9;
+      transition: all 0.3s ease;
+    }
+    
+    footer:hover p {
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal.show {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 3rem;
+      border-radius: 20px;
+      max-width: 700px;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+      animation: slideUp 0.4s ease;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      font-size: 2rem;
+      cursor: pointer;
+      color: var(--text-light);
+      transition: all 0.3s ease;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--bg-light);
+    }
+
+    .modal-close:hover {
+      color: var(--primary);
+      background: var(--primary);
+      color: white;
+      transform: rotate(90deg);
+    }
+
+    .modal-content h2 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+    }
+
+    .modal-content h3 {
+      color: var(--primary);
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .modal-content p, .modal-content li {
+      color: var(--text-light);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .modal-content ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .modal-content li {
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .modal-content li::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: bold;
+    }
+    
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        padding: 2rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: left 0.3s ease;
+      }
+      
+      .nav-links.active {
+        left: 0;
+      }
+      
+      .menu-toggle {
+        display: flex;
+      }
+      
+      .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(8px, 8px);
+      }
+      
+      .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+      }
+      
+      .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero .subtitle {
+        font-size: 1.2rem;
+      }
+      
+      .about-content {
+        grid-template-columns: 1fr;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      section {
+        padding: 3rem 1.5rem;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+      }
+      
+      .timeline {
+        padding-left: 1rem;
+      }
+      
+      .timeline-item {
+        padding-left: 1.5rem;
+      }
+      
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-content {
+        margin: 1rem;
+        padding: 2rem;
+        max-height: 90vh;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <img src="profile.png" style="height:110px ;width: 110px; border-radius: 50%; border-color: black; border:rgb(229, 221, 221) solid 1px; position :relative;left:-160px;" class="logo"/>
+      <ul class="nav-links" id="navLinks" style="position: relative; left : -220px; font-size: larger; color: rgb(221, 216, 207);">
+        <li style="color: white;"><a href="#home" class="nav-link">Home</a></li>
+        <li ><a href="#about" class="nav-link">About</a></li>
+        <li ><a href="#experience" class="nav-link">Internships</a></li>
+        <li ><a href="#projects" class="nav-link">Projects</a></li>
+        <li ><a href="#skills" class="nav-link">Skills</a></li>
+        <li ><a href="#achievements" class="nav-link">Achievements</a></li>
+        <li ><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Aniruddha S Kulkarni</h1>
+      <p class="subtitle">Software Developer & ML Enthusiast</p>
+      <p class="tagline">Specializing in Full Stack Development, Machine Learning & Cybersecurity</p>
+      <div class="cta-buttons">
+        <a href="#about" class="btn btn-primary">Learn More</a>
+        <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2 class="section-title">About Me</h2>
+    <div class="about-content">
+      <div class="profile-card">
+        <div class="profile-img"><img src="profile.png" style="width: 165px; height: 165px;" class="logo"/></div>
+        <h3>Aniruddha S Kulkarni</h3>
+        <p>Software Developer</p>
+        <div class="contact-info">
+          <p>📍 Hassan, Karnataka</p>
+          <p>📞 +91 7975153909</p>
+          <p>🎓 MCE Hassan</p>
+        </div>
+      </div>
+      <div class="about-text">
+        <h3>Professional Profile</h3>
+        <p>
+          I'm a passionate Software Developer and Machine Learning enthusiast currently pursuing my Bachelor of Engineering in Computer Science at Malnad College of Engineering, Hassan with a CGPA of 8.67.
+        </p>
+        <p>
+          My journey in technology spans across full-stack web development, machine learning, cybersecurity, and DevSecOps. I have hands-on experience working with prestigious organizations including <b>ISRO's</b> Master Control Facility and <b>L&T Technology Services</b>, where I've contributed to significant projects.
+        </p>
+        <p>
+          I'm particularly proud of my work on Wildlife Poaching Detection using Machine Learning, which has been funded by KSCST (Karnataka State Council for Science and Technology) and the <b>Government of Karnataka</b>. My technical expertise includes Python, Java, React JS, Node JS, and various ML frameworks including TensorFlow and YOLO.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience/Internships Section -->
+  <section id="experience">
+    <h2 class="section-title">Internship Experience</h2>
+    <div class="timeline">
+      <div class="timeline-item" onclick="openModal('ltModal')">
+        <div class="timeline-content">
+          <h3>Software Development Intern</h3>
+          <p class="company">L&T Technology Services, Bangalore | Feb 2025 – June 2025</p>
+          <ul>
+            <li>Working on Project SPINDLE - A Project Onboarding tool using V Model SDLC</li>
+            <li>Developed UI components using React JS, Node JS, and MySQL</li>
+            <li>Performed Static Code Analysis using SonarQube for security vulnerabilities</li>
+          </ul>
+          <span class="read-more">Click to read more →</span>
+        </div>
+      </div>
+
+      <div class="timeline-item" onclick="openModal('xpmcModal')">
+        <div class="timeline-content">
+          <h3>DevOps Intern</h3>
+          <p class="company">XPMC - Employability.life, Australia (Remote) | June 2024 – Oct 2024</p>
+          <ul>
+            <li>Hands-on training on Azure DevOps, Docker, and Kubernetes</li>
+            <li>SDLC (Agile) practice in a team environment</li>
+            <li>Generated technical documentation for internal audits</li>
+          </ul>
+          <span class="read-more">Click to read more →</span>
+        </div>
+      </div>
+
+      <div class="timeline-item" onclick="openModal('isroModal')">
+        <div class="timeline-content">
+          <h3>Java Developer Intern</h3>
+          <p class="company">ISRO - Master Control Facility, Hassan | Oct 2023 – Nov 2023</p>
+          <ul>
+            <li>Developed STAR Project: Space-Objects Tabulation Analysis & Representation</li>
+            <li>Created web-based tool for analyzing space debris using NORAD data</li>
+            <li>Implemented data visualization through interactive charts</li>
+          </ul>
+          <span class="read-more">Click to read more →</span>
+        </div>
+      </div>
+
+      <div class="timeline-item" onclick="openModal('jvModal')">
+        <div class="timeline-content">
+          <h3>Full Stack Web Development Intern</h3>
+          <p class="company">J V Global, Bengaluru (Remote) | Oct 2022 – Nov 2022</p>
+          <ul>
+            <li>Hands-on training on Full Stack Web Programming</li>
+            <li>Developed an e-commerce website and Task Manager Tool</li>
+            <li>Worked with HTML, CSS, JavaScript, and MySQL</li>
+          </ul>
+          <span class="read-more">Click to read more →</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <h2 class="section-title">Featured Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card" onclick="openModal('wildlifeModal')">
+        <span class="project-icon">⚙️🧠</span>
+        <h3>Wildlife Poaching Detection</h3>
+        <p>ML-based system using YOLO Model for detecting wildlife poaching activities in real-time</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">YOLO</span>
+          <span class="tech-tag">TensorFlow</span>
+          <span class="tech-tag">ML</span>
+        </div>
+        <span class="read-more" style="display: block; margin-top: 1rem;">Click for details →</span>
+      </div>
+
+      <div class="project-card" onclick="openModal('cattleModal')">
+        <span class="project-icon">🐄</span>
+        <h3>Cattle Disease Detection</h3>
+        <p>AI-powered system using ResNet Model for early detection of cattle diseases</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">ResNet</span>
+          <span class="tech-tag">Deep Learning</span>
+          <span class="tech-tag">CV</span>
+        </div>
+        <span class="read-more" style="display: block; margin-top: 1rem;">Click for details →</span>
+      </div>
+
+      <div class="project-card" onclick="openModal('spindleModal')">
+        <span class="project-icon">🔧</span>
+        <h3>SPINDLE Project at L&T</h3>
+        <p>DevSecOps project for automating project onboarding with security-first approach</p>
+        <div class="tech-tags">
+          <span class="tech-tag">React JS</span>
+          <span class="tech-tag">Node JS</span>
+          <span class="tech-tag">MySQL</span>
+          <span class="tech-tag">SonarQube</span>
+        </div>
+        <span class="read-more" style="display: block; margin-top: 1rem;">Click for details →</span>
+      </div>
+
+      <div class="project-card" onclick="openModal('starModal')">
+        <span class="project-icon">🛰️</span>
+        <h3>STAR - ISRO Project</h3>
+        <p>Space debris analysis tool using NORAD data with interactive visualizations</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Java</span>
+          <span class="tech-tag">JSF</span>
+          <span class="tech-tag">MySQL</span>
+          <span class="tech-tag">Linux</span>
+        </div>
+        <span class="read-more" style="display: block; margin-top: 1rem;">Click for details →</span>
+      </div>
+
+      <div class="project-card" onclick="openModal('pentestModal')">
+        <span class="project-icon">🔐</span>
+        <h3>Pen Testing Tool</h3>
+        <p>Ethical hacking tool developed using .NET for security vulnerability assessment</p>
+        <div class="tech-tags">
+          <span class="tech-tag">.NET</span>
+          <span class="tech-tag">C#</span>
+          <span class="tech-tag">Cybersecurity</span>
+        </div>
+        <span class="read-more" style="display: block; margin-top: 1rem;">Click for details →</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills">
+    <h2 class="section-title">Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-category">
+        <h3>💻 Programming Languages</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">C</span>
+          <span class="skill-tag">C#</span>
+          <span class="skill-tag">Java (OOP)</span>
+          <span class="skill-tag">Python</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h3>🗄️ Database & Backend</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">MySQL</span>
+          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">Node JS</span>
+          <span class="skill-tag">REST API</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h3>🎨 Frontend Development</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">React JS</span>
+          <span class="skill-tag">HTML</span>
+          <span class="skill-tag">CSS</span>
+          <span class="skill-tag">JavaScript</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h3>🤖 Machine Learning & AI</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">TensorFlow</span>
+          <span class="skill-tag">YOLO</span>
+          <span class="skill-tag">NLP</span>
+          <span class="skill-tag">Generative AI</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h3>🔒 Cybersecurity</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Nmap</span>
+          <span class="skill-tag">Burp Suite</span>
+          <span class="skill-tag">Wireshark</span>
+          <span class="skill-tag">Automotive Security</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h3>🛠️ DevOps & Tools</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">Kubernetes</span>
+          <span class="skill-tag">Azure DevOps</span>
+          <span class="skill-tag">SonarQube</span>
+          <span class="skill-tag">Jenkins</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements Section -->
+  <section id="achievements">
+    <h2 class="section-title">Education & Achievements</h2>
+    
+    <!-- Education -->
+    <div class="education-grid">
+      <div class="education-card">
+        <h3>Bachelor of Engineering (CSE)</h3>
+        <p><strong>Malnad College of Engineering, Hassan</strong></p>
+        <p>December 2021 – July 2025</p>
+        <p><strong>CGPA: 8.67</strong> (Autonomous under VTU)</p>
+      </div>
+      <div class="education-card">
+        <h3>Pre University (PCMC)</h3>
+        <p><strong>APJ Academy, Gnanadhare PU College, Hassan</strong></p>
+        <p>June 2019 – July 2021</p>
+        <p><strong>Percentage: 99.16%</strong> (State Board)</p>
+      </div>
+      <div class="education-card">
+        <h3>Secondary Education (X Std)</h3>
+        <p><strong>Kendriya Vidyalaya, Hassan</strong></p>
+        <p>April 2009 – March 2019</p>
+        <p><strong>Percentage: 90.2%</strong> (CBSE Board)</p>
+      </div>
+    </div>
+
+    <!-- Major Achievements -->
+    <h3 class="section-title" style="font-size: 2rem; margin-top: 3rem;">Major Achievements</h3>
+    <div class="achievements-grid">
+      <div class="achievement-card">
+        <h3>🏆 KSCST Funded Project</h3>
+        <p>"Wildlife Poaching Detection using Machine Learning" project has been selected for KSCST (Karnataka State Council for Science and Technology) and is currently funded by the Government of Karnataka.</p>
+        <p><a href="https://github.com/ASKCODING123/Wildlife-Poaching-Detection.git" target="_blank">View Project →</a></p>
+      </div>
+      <div class="achievement-card">
+        <h3>📄 Published Research Paper</h3>
+        <p>"Wildlife Poaching Detection using Machine Learning" published in International Journal IJRND Publications.</p>
+        <p><strong>ISSN: 2456-4184</strong></p>
+      </div>
+    </div>
+    
+    <!-- Certifications -->
+    <div class="certifications-section">
+      <h3 class="section-title" style="font-size: 2rem; margin-top: 2rem;">Certifications</h3>
+      <div class="cert-grid">
+        <div class="cert-card">
+          <span class="cert-icon">🏆</span>
+          <h4>Python Fundamentals</h4>
+          <p>Comprehensive Python programming certification covering core concepts and advanced features</p>
+        </div>
+        <div class="cert-card">
+          <span class="cert-icon">🏆</span>
+          <h4>Java Developer Intern - ISRO</h4>
+          <p>Official internship certification from Master Control Facility, ISRO Hassan</p>
+        </div>
+        <div class="cert-card">
+          <span class="cert-icon">🏆</span>
+          <h4>L&T Internship Certificate</h4>
+          <p>Internship completion certificate from L&T Technology Services, Bangalore</p>
+        </div>
+        <div class="cert-card">
+          <span class="cert-icon">🏆</span>
+          <h4>SQL Intermediate (HackerRank)</h4>
+          <p>HackerRank certification demonstrating intermediate SQL proficiency</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2 class="section-title">Let's Connect</h2>
+    <div class="contact-content">
+      <p>I'm always open to discussing new opportunities, collaborations, or just having a chat about technology and innovation.</p>
+      
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-icon">📧</div>
+          <div class="contact-label">Email</div>
+          <div class="contact-details"><a href="mailto:ani.kulk.hsn@gmail.com">ani.kulk.hsn@gmail.com</a></div>
+        </div>
+        
+        <div class="contact-card">
+          <div class="contact-icon">📱</div>
+          <div class="contact-label">Phone</div>
+          <div class="contact-details">+91 7975153909</div>
+        </div>
+        
+        <div class="contact-card">
+          <div class="contact-icon">💼</div>
+          <div class="contact-label">LinkedIn</div>
+          <div class="contact-details"><a href="http://www.linkedin.com/in/ask052003" target="_blank">linkedin.com/in/ask052003</a></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Aniruddha S Kulkarni. All rights reserved.</p>
+  </footer>
+
+  <!-- Modals -->
+  
+  <!-- L&T Modal -->
+  <div id="ltModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal('ltModal')">&times;</span>
+      <h2>L&T Technology Services</h2>
+      <p><strong>Position:</strong> Software Development Intern</p>
+      <p><strong>Duration:</strong> February 2025 - June 2025 </p>
+      <p><strong>Location:</strong> Bangalore, On-Site</p>
+      
+      <h3>Project: SPINDLE</h3>
+      <p>SPINDLE is a comprehensive Project Onboarding tool developed using V Model SDLC methodology.</p>
+      
+      <h3>Key Responsibilities:</h3>
+      <ul>
+        <li>Developed UI components for Project SPINDLE using React JS, Node JS, and MySQL</li>
+        <li>Implemented responsive and interactive user interfaces following modern design principles</li>
+        <li>Performed Static Code Analysis using SonarQube to identify security vulnerabilities, code smells, and bugs</li>
+        <li>Worked on DevOps implementation using Jenkins for CI/CD pipelines</li>
+        <li>Completed training on Information Security Management System (ISMS) and Data Security</li>
+        <li>Collaborated with cross-functional teams following Agile methodologies</li>
+      </ul>
+      
+      <h3>Technologies Used:</h3>
+      <ul>
+        <li>Frontend: React JS</li>
+        <li>Backend: Node JS</li>
+        <li>Database: MySQL</li>
+        <li>Code Quality: SonarQube</li>
+        <li>CI/CD: Jenkins</li>
+        <li>Methodology: V Model SDLC</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- XPMC Modal -->
+  <div id="xpmcModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal('xpmcModal')">&times;</span>
+      <h2>XPMC - Employability.life</h2>
+      <p><strong>Position:</strong> DevOps Intern</p>
+      <p><strong>Duration:</strong> June 2024 - October 2024</p>
+      <p><strong>Location:</strong> Australia, Online</p>
+      
+      <h3>Key Learning & Achievements:</h3>
+      <ul>
+        <li>Gained hands-on experience with Azure DevOps for project management and CI/CD</li>
+        <li>Worked extensively with Docker for containerization and application deployment</li>
+        <li>Learned Kubernetes for container orchestration and management</li>
+        <li>Practiced Software Development Life Cycle (SDLC) using Agile methodology in a team environment</li>
+        <li>Generated technical documentation and reports using Word and PowerPoint for internal audits</li>
+        <li>Collaborated with international team members in a remote work setting</li>
+      </ul>
+      
+      <h3>Skills Developed:</h3>
+      <ul>
+        <li>Azure DevOps</li>
+        <li>Docker & Containerization</li>
+        <li>Kubernetes</li>
+        <li>Agile/Scrum Methodology</li>
+        <li>Technical Documentation</li>
+        <li>Remote Team Collaboration</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ISRO Modal -->
+  <div id="isroModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal('isroModal')">&times;</span>
+      <h2>ISRO - Master Control Facility</h2>
+      <p><strong>Position:</strong> Java Developer Intern</p>
+      <p><strong>Duration:</strong> October 2023 - November 2023</p>
+      <p><strong>Location:</strong> Hassan, On-Site</p>
+      
+      <h3>Project: STAR (Space-Objects Tabulation Analysis & Representation)</h3>
+      <p>Developed a comprehensive web-based data analysis tool for analyzing space debris using NORAD (North American Aerospace Defense Command) data.</p>
+      
+      <h3>Key Achievements:</h3>
+      <ul>
+        <li>Designed and implemented a web-based tool for space debris analysis</li>
+        <li>Incorporated computational processing algorithms for NORAD data</li>
+        <li>Implemented trend analysis features for tracking space objects</li>
+        <li>Created interactive data visualizations through dynamic charts</li>
+        <li>Worked in a Linux environment throughout the project</li>
+        <li>Collaborated with ISRO scientists and engineers</li>
+      </ul>
+      
+      <h3>Technologies Used:</h3>
+      <ul>
+        <li>Java</li>
+        <li>JSF (JavaServer Faces)</li>
+        <li>MySQL Database</li>
+        <li>Linux Environment</li>
+        <li>Data Visualization Libraries</li>
+      </ul>
+      
+      <h3>Additional Training:</h3>
+      <ul>
+        <li>Machine Learning Fundamentals</li>
+        <li>Hands-on sessions with ISRO experts</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- JV Global Modal -->
+  <div id="jvModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal('jvModal')">&times;</span>
+      <h2>J V Global</h2>
+      <p><strong>Position:</strong> Full Stack Web Development Intern</p>
+      <p><strong>Duration:</strong> October 2022 - November 2022</p>
+      <p><strong>Location:</strong> Bengaluru, Remote</p>
+      
+      <h3>Training & Projects:</h3>
+      <ul>
+        <li>Comprehensive hands-on training on Full Stack Web Programming</li>
+        <li>Developed a fully functional e-commerce website as a major task</li>
+        <li>Created a Task Manager Tool with CRUD operations</li>
+        <li>Learned frontend technologies: HTML, CSS, JavaScript</li>
+        <li>Gained expertise in MySQL database management</li>
+        <li>Implemented responsive web design principles</li>
+        <li>Worked on both frontend and backend integration</li>
+      </ul>
+      
+      <h3>Skills Acquired:</h3>
+      <ul>
+        <li>HTML5 & CSS3</li>
+        <li>JavaScript (ES6+)</li>
+        <li>MySQL Database Design</li>
+        <li>Full Stack Development</li>
+        <li>Web Application Architecture</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Wildlife Project Modal -->
+  <div id="wildlifeModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal('wildlifeModal')">&times;</span>
+      <h2>Wildlife Poaching Detection using Machine Learning</h2>
+      
+      <h3>🏆 Government Funded Project</h3>
+      <p>This project has been selected and is currently funded by KSCST (Karnataka State Council for Science and Technology) and the Government of Karnataka.</p>
+      
+      <h3>Project Overview:</h3>
+      <p>An intelligent system designed to detect wildlife poaching activities in real-time using advanced machine learning techniques, specifically the YOLO (You Only Look Once) object detection model.</p>
+      
+      <h3>Key Features:</h3>
+      <ul>
+        <li>Real-time detection of suspicious activities in protected wildlife areas</li>
+        <li>YOLO Model implementation for fast and accurate object detection</li>
+        <li>Automated alert system for forest authorities</li>
+        <li>High accuracy in detecting humans and vehicles in restricted zones</li>
+        <li>Scalable architecture for deployment across multiple camera feeds</li>
+      </ul>
+      
+      <h3>Technologies Used:</h3>
+      <ul>
+        <li>Python</li>
+        <li>YOLO (You Only Look Once) Model</li>
+        <li>TensorFlow/Keras</li>
+        <li>OpenCV</li>
+        <li>Machine Learning & Computer Vision</li>
+      </ul>
+      
+      <h3>Published Research:</h3>
+      <p>Paper titled "Wildlife Poaching Detection using Machine Learning" published in International Journal IJRND Publications (ISSN: 2456-4184)</p>
+      
+      <p><strong>GitHub Repository:</strong> <a href="https://github.com/ASKCODING123/Wildlife-Poaching-Detection.git" target="_blank">View on GitHub</a></p>
+    </div>
+  </div>
+
+  <!-- Cattle Disease Modal -->
+  <div id="cattleModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal('cattleModal')">&times;</span>
+      <h2>Cattle Disease Detection using Machine Learning</h2>
+      
+      <h3>Project Overview:</h3>
+      <p>An AI-powered system designed to detect and classify various cattle diseases using deep learning techniques, specifically the ResNet (Residual Network) model.</p>
+      
+      <h3>Key Features:</h3>
+      <ul>
+        <li>Early detection of cattle diseases through image analysis</li>
+        <li>ResNet Model implementation for high accuracy</li>
+        <li>Classification of multiple disease types</li>
+        <li>User-friendly interface for farmers and veterinarians</li>
+        <li>Mobile-compatible for field deployment</li>
+      </ul>
+      
+      <h3>Technologies Used:</h3>
+      <ul>
+        <li>Python</li>
+        <li>ResNet (Residual Network) Model</li>
+        <li>TensorFlow/Keras</li>
+        <li>Deep Learning</li>
+        <li>Computer Vision</li>
+        <li>Image Processing</li>
+      </ul>
+      
+      <h3>Impact:</h3>
+      <p>This project aims to help farmers detect cattle diseases early, reducing livestock mortality and improving animal healthcare in rural areas.</p>
+    </div>
+  </div>
+
+  <!-- SPINDLE Project Modal -->
+  <div id="spindleModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal('spindleModal')">&times;</span>
+      <h2>SPINDLE - Project Onboarding Tool</h2>
+      
+      <h3>Project Overview:</h3>
+      <p>SPINDLE is a comprehensive DevSecOps project developed at L&T Technology Services for automating and streamlining the project onboarding process with a security-first approach.</p>
+      
+      <h3>Key Features:</h3>
+      <ul>
+        <li>Automated project onboarding workflow</li>
+        <li>Integrated security scanning from the start</li>
+        <li>Real-time project status tracking</li>
+        <li>Role-based access control</li>
+        <li>Comprehensive audit trails</li>
+        <li>Dashboard for project metrics and analytics</li>
+      </ul>
+      
+      <h3>My Contributions:</h3>
+      <ul>
+        <li>Developed responsive UI components using React JS</li>
+        <li>Implemented backend APIs using Node JS</li>
+        <li>Designed and optimized MySQL database schema</li>
+        <li>Performed Static Code Analysis using SonarQube</li>
+        <li>Identified and fixed security vulnerabilities, code smells, and bugs</li>
+        <li>Worked on CI/CD pipeline using Jenkins</li>
+      </ul>
+      
+      <h3>Technologies Used:</h3>
+      <ul>
+        <li>Frontend: React JS</li>
+        <li>Backend: Node JS</li>
+        <li>Database: MySQL</li>
+        <li>Code Quality: SonarQube</li>
+        <li>CI/CD: Jenkins</li>
+        <li>Methodology: V Model SDLC, DevSecOps</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- STAR Modal -->
+  <div id="starModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal('starModal')">&times;</span>
+      <h2>STAR - Space-Objects Tabulation Analysis & Representation</h2>
+      
+      <h3>🛰️ ISRO Project</h3>
+      <p>A sophisticated web-based tool developed during internship at ISRO's Master Control Facility for analyzing space debris and tracking space objects.</p>
+      
+      <h3>Project Overview:</h3>
+      <p>STAR is designed to process and analyze NORAD (North American Aerospace Defense Command) data for space debris tracking, providing comprehensive analysis and visualization of space objects.</p>
+      
+      <h3>Key Features:</h3>
+      <ul>
+        <li>NORAD data integration and processing</li>
+        <li>Computational analysis of space object trajectories</li>
+        <li>Trend analysis for predicting space object movements</li>
+        <li>Interactive charts and data visualizations</li>
+        <li>Real-time data updates and processing</li>
+        <li>Export functionality for reports and analysis</li>
+      </ul>
+      
+      <h3>Technologies Used:</h3>
+      <ul>
+        <li>Java (Core & Advanced)</li>
+        <li>JSF (JavaServer Faces) for web interface</li>
+        <li>MySQL for data storage</li>
+        <li>Linux environment</li>
+        <li>Data visualization libraries</li>
+        <li>NORAD data parsing algorithms</li>
+      </ul>
+      
+      <h3>Learning Experience:</h3>
+      <ul>
+        <li>Worked directly with ISRO scientists and engineers</li>
+        <li>Gained insights into space debris management</li>
+        <li>Attended Machine Learning Fundamentals sessions</li>
+        <li>Exposure to aerospace industry standards</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Pen Testing Tool Modal -->
+  <div id="pentestModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal('pentestModal')">&times;</span>
+      <h2>Pen Testing Tool using .NET</h2>
+      
+      <h3>Project Overview:</h3>
+      <p>An ethical hacking tool developed using .NET framework for security vulnerability assessment and penetration testing.</p>
+      
+      <h3>Key Features:</h3>
+      <ul>
+        <li>Network scanning and port detection</li>
+        <li>Vulnerability assessment</li>
+        <li>Security audit reporting</li>
+        <li>Automated scanning tools</li>
+        <li>User-friendly GUI for ease of use</li>
+        <li>Comprehensive logging and reporting</li>
+      </ul>
+      
+      <h3>Technologies Used:</h3>
+      <ul>
+        <li>.NET Framework</li>
+        <li>C# Programming</li>
+        <li>Network Security Protocols</li>
+        <li>Ethical Hacking Techniques</li>
+      </ul>
+      
+      <h3>Purpose:</h3>
+      <p>This tool was developed for educational purposes to understand security vulnerabilities and help organizations assess their network security posture through ethical hacking practices.</p>
+      
+      <p><strong>Note:</strong> This tool is intended for ethical hacking and authorized security testing only.</p>
+    </div>
+  </div>
+
+  <script>
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+    
+    // Close menu when clicking on a link
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
+    
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('section');
+    const navItems = document.querySelectorAll('.nav-link');
+    
+    window.addEventListener('scroll', () => {
+      let current = '';
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (scrollY >= (sectionTop - 200)) {
+          current = section.getAttribute('id');
+        }
+      });
+      
+      navItems.forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('href').slice(1) === current) {
+          item.classList.add('active');
+        }
+      });
+      
+      // Add scrolled class to navbar
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+    
+    // Smooth scroll for all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Modal functions
+    function openModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.remove('show');
+        document.body.style.overflow = 'auto';
+      }
+    }
+
+    // Close modal when clicking outside
+    window.addEventListener('click', (e) => {
+      if (e.target.classList.contains('modal')) {
+        e.target.classList.remove('show');
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    // Close modal on ESC key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal.show').forEach(modal => {
+          modal.classList.remove('show');
+          document.body.style.overflow = 'auto';
+        });
+      }
+    });
+  </script>
+</body>
+</html>
