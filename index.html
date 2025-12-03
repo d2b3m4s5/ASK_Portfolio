@@ -37,13 +37,14 @@
     nav {
       position: fixed;
       top: 0;
+      left: 0;
       width: 100%;
       background: rgba(19, 19, 18, 0.95);
       backdrop-filter: blur(10px);
       box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
       z-index: 1000;
       transition: all 0.3s ease;
-      border-bottom:#211e1a 2px solid;
+      border-bottom: #211e1a 2px solid;
     }
     
     nav.scrolled {
@@ -53,30 +54,28 @@
     .nav-container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0.7rem 1.5rem;
+      padding: 0.6rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      min-height: 72px;
     }
     
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--primary);
-      text-decoration: none;
-      transition: all 0.3s ease;
+    .logo-img {
+      height: 64px;
+      width: 64px;
+      border-radius: 50%;
+      border: 1px solid rgb(229, 221, 221);
+      object-fit: cover;
     }
-    
-    .logo:hover {
-      transform: scale(1.1);
-      color: var(--accent);
-    }
-    
+
     .nav-links {
       display: flex;
       gap: 2rem;
       list-style: none;
-      left: 0; /* desktop */
+      font-size: larger;
+      color: rgb(221, 216, 207);
+      align-items: center;
     }
     
     .nav-links a {
@@ -114,7 +113,6 @@
       gap: 5px;
       cursor: pointer;
     }
-
     /* make the below code responsive, also with i click on home about, certificates, achievement, sections, the flow shd be smooth, do it and give the full code fast */
     .menu-toggle span {
       width: 25px;
@@ -153,7 +151,7 @@
       position: relative;
       z-index: 1;
       max-width: 800px;
-      margin-top: 4rem; /* so it doesn’t hide behind navbar on small screens */
+      margin-top: 4rem; /* so it doesn’t hide behind navbar on phones */
     }
     
     .hero h1 {
@@ -1108,19 +1106,24 @@
     /* Responsive Design */
     @media (max-width: 1024px) {
       .nav-container {
-        padding: 0.7rem 1rem;
+        padding: 0.6rem 1rem;
       }
     }
 
     @media (max-width: 768px) {
       .nav-container {
-        padding: 0.7rem 1rem;
+        padding: 0.6rem 1rem;
+      }
+
+      .logo-img {
+        height: 50px;
+        width: 50px;
       }
 
       .nav-links {
         position: fixed;
-        top: 80px;
-        left: -100% !important;  /* override inline style on mobile */
+        top: 72px; /* just below navbar */
+        left: -100%;
         width: 100%;
         background: rgba(19,19,18,0.98);
         flex-direction: column;
@@ -1128,12 +1131,12 @@
         padding: 1.5rem 0 2rem;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
         transition: left 0.3s ease;
-        font-size: 1.1rem;
+        font-size: 1.05rem;
         gap: 1.5rem;
       }
       
       .nav-links.active {
-        left: 0 !important;
+        left: 0;
       }
       
       .menu-toggle {
@@ -1152,6 +1155,10 @@
         transform: rotate(-45deg) translate(6px, -6px);
       }
       
+      .hero {
+        padding-top: 5rem;
+      }
+
       .hero h1 {
         font-size: 2.5rem;
       }
@@ -1193,13 +1200,6 @@
         padding: 2rem;
         max-height: 90vh;
       }
-
-      /* profile image & nav logo */
-      .nav-container img.logo {
-        height: 60px !important;
-        width: 60px !important;
-        left: 0 !important;
-      }
     }
   </style>
 </head>
@@ -1207,9 +1207,9 @@
   <!-- Navigation -->
   <nav id="navbar">
     <div class="nav-container">
-      <img src="profile.png" style="height:110px ;width: 110px; border-radius: 50%; border-color: black; border:rgb(229, 221, 221) solid 1px; position: relative; left:-160px;" class="logo"/>
-      <ul class="nav-links" id="navLinks" style="position: relative; left:-220px; font-size: larger; color: rgb(221, 216, 207);">
-        <li style="color: white;"><a href="#home" class="nav-link">Home</a></li>
+      <img src="profile.png" class="logo-img" alt="Profile" />
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="nav-link">Home</a></li>
         <li><a href="#about" class="nav-link">About</a></li>
         <li><a href="#experience" class="nav-link">Internships</a></li>
         <li><a href="#projects" class="nav-link">Projects</a></li>
@@ -1560,8 +1560,7 @@
     <p>&copy; 2025 Aniruddha S Kulkarni. All rights reserved.</p>
   </footer>
 
-  <!-- Modals -->
-  
+  <!-- Modals (same as before) -->
   <!-- L&T Modal -->
   <div id="ltModal" class="modal">
     <div class="modal-content">
@@ -1911,7 +1910,6 @@
       
       sections.forEach(section => {
         const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
         if (scrollY >= (sectionTop - 200)) {
           current = section.getAttribute('id');
         }
@@ -1933,13 +1931,13 @@
       }
     });
     
-    // Smooth scroll for all anchor links (extra control)
+    // Smooth scroll with offset for fixed navbar
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-          const yOffset = -60; // offset for fixed navbar
+          const yOffset = -70; // height of navbar
           const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
           window.scrollTo({ top: y, behavior: 'smooth' });
         }
